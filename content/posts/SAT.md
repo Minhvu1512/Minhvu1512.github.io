@@ -10,7 +10,6 @@ type:
 weight: 10
 aliases:
 - /blog/what-I-hate-about-the-sat/
-draft: false
 ---
 For anyone who hasn’t taken the SAT, this post is simply a rant about how unfair the SAT has been. To be clear, the SAT is still a good test to polish your university applications. However, there are serious downsides in the way the College Board – the organization that administers the test – has been managing it.
 

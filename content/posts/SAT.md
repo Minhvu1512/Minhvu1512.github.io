@@ -3,7 +3,7 @@ author:
   name: "Vu"
 date: 2025-04-28
 linktitle: What I hate about the SAT
-title: MWhat I hate about the SAT
+title: What I hate about the SAT
 type:
 - post
 - posts

@@ -13,6 +13,6 @@ aliases:
 ---
 
 **Team:** Hannah Kim, Shayan Kazemi, Minh Vu Nguyen  
-**Course:** CMSC 304 — Social and Ethical Issues in IT, Spring 2026.
+**Course:** CMSC 304 — Social and Ethical Issues in IT, Spring 2026
 
 [View the full poster →](/EthicaAI_Poster.html)

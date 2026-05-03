@@ -2,25 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/poster/</loc>
+    <loc>https://minhvu1512.github.io/posts/poster/</loc>
     <lastmod>2026-05-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/sat/</loc>
+    <loc>https://minhvu1512.github.io/posts/sat/</loc>
     <lastmod>2025-04-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://minhvu1512.github.io/</loc>
     <lastmod>2026-05-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://minhvu1512.github.io/posts/</loc>
     <lastmod>2026-05-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/2024_recap/</loc>
+    <loc>https://minhvu1512.github.io/posts/2024_recap/</loc>
     <lastmod>2025-03-11T02:45:34-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/</loc>
+    <loc>https://minhvu1512.github.io/blog/</loc>
   </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>https://minhvu1512.github.io/series/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://minhvu1512.github.io/tags/</loc>
   </url>
 </urlset>

@@ -11,7 +11,7 @@ weight: 10
 aliases:
 - /blog/what-I-hate-about-the-sat/
 ---
-For anyone who hasn’t taken the SAT, this post is simply a rant about how unfair the SAT has been. To be clear, the SAT is still a good test to polish your university applications. However, there are serious downsides in the way the College Board – the organization that administers the test – has been managing it. mmmmmmmmmmm
+For anyone who hasn’t taken the SAT, this post is simply a rant about how unfair the SAT has been. To be clear, the SAT is still a good test to polish your university applications. However, there are serious downsides in the way the College Board – the organization that administers the test – has been managing it. mmmmmmmmmmmm
 
 The SAT is designed as a critical thinking exam, covering both math and verbal sections. If we focus solely on the topics it tests, I have to admit that the SAT does a great job assessing students’ reasoning skills. The verbal module, for example, is largely argument-based. It also features questions about writing conventions and vocabulary, which is why it’s called “verbal” rather than just “reading.” The verbel section tests students' ability to synthesize information and logically reason through the context – it's like debate training without requiring deep expertise in any particular field. This allows students to have their logical thinking assessed fairly.
 

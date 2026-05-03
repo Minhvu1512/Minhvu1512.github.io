@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EthicaAI Poster — CMSC 304 Spring 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* ============================================================
+       GLOBAL RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #04080f;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 32px 16px;
+    }
+
+    /* ============================================================
+       POSTER WRAPPER
+       To change overall poster width, edit max-width below.
+    ============================================================ */
+    .p {
+      font-family: 'Rajdhani', sans-serif;
+      background: #0a0e1a;
+      border: 1px solid #1a2a4a;
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 960px;
+      width: 100%;
+      color: #c8d8f0;
+    }
+
+    /* ============================================================
+       SCANLINE OVERLAY (decorative)
+       Remove .scanline::after block to disable the effect.
+    ============================================================ */
+    .scanline { position: relative; }
+    .scanline::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 2px,
+        rgba(0,200,255,0.015) 2px, rgba(0,200,255,0.015) 4px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ============================================================
+       HEADER
+       - To change poster title: edit <h1> text inside .hdr-main
+       - To change tagline: edit the .tag <div> text
+       - To change authors: edit .authors inside .hdr-meta
+       - To change course info: edit .course inside .hdr-meta
+    ============================================================ */
+    .p-header {
+      background: #060b14;
+      border-bottom: 1px solid #1a3a6a;
+      padding: 22px 28px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 20px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .p-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00c8ff, #0066ff, transparent);
+    }
+    .logo-hex {
+      width: 60px; height: 60px;
+      background: #0a1628;
+      border: 1px solid #0066ff;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 2px;
+      position: relative;
+    }
+    .logo-hex::before {
+      content: '';
+      position: absolute; inset: -1px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #0066ff33, transparent);
+      pointer-events: none;
+    }
+    /* To change logo symbol: edit the text inside .logo-sym */
+    .logo-sym { font-family: 'Share Tech Mono', monospace; font-size: 20px; color: #00c8ff; line-height: 1; }
+    .logo-lbl { font-size: 8px; letter-spacing: 2px; color: #0066ff; font-family: 'Share Tech Mono', monospace; }
+    .hdr-main h1 { font-family: 'Rajdhani', sans-serif; font-size: 34px; font-weight: 700; color: #e8f4ff; letter-spacing: 2px; line-height: 1; }
+    .hdr-main .tag { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #0099cc; margin-top: 4px; letter-spacing: 1px; }
+    .hdr-meta { text-align: right; }
+    .hdr-meta .authors { font-size: 12px; color: #7a9abf; line-height: 1.7; font-family: 'Share Tech Mono', monospace; }
+    .hdr-meta .course  { font-size: 10px; color: #4a6a8f; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+
+    /* ============================================================
+       STATUS BAR
+       To add a new status item: copy one <div class="status-item">
+       block and paste it inside .status-bar. Edit label and value.
+    ============================================================ */
+    .status-bar {
+      background: #060b14;
+      border-bottom: 1px solid #1a3a6a;
+      padding: 6px 28px;
+      display: flex; gap: 24px; align-items: center;
+      flex-wrap: wrap;
+    }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #00ff88; display: inline-block; margin-right: 6px; }
+    .status-item { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: #4a7a9f; letter-spacing: 0.5px; }
+    .status-item span { color: #00c8ff; }
+
+    /* ============================================================
+       BODY GRID
+       Currently 3 equal columns. To change layout edit
+       grid-template-columns (e.g. "1fr 1.5fr 1fr" for wider middle).
+    ============================================================ */
+    .p-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: #1a2a4a;
+    }
+
+    /* ============================================================
+       CELLS (sections)
+       .span2 = spans 2 columns, .span3 = full width
+       To add a new section: copy a .cell block and place it inside
+       .p-body. Use class="cell span2" or "cell span3" as needed.
+    ============================================================ */
+    .cell { background: #080d1a; padding: 18px 20px; }
+    .cell.span2 { grid-column: span 2; }
+    .cell.span3 { grid-column: span 3; }
+    .cell h2 {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px; letter-spacing: 2px; color: #0066ff;
+      margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .cell h2::before { content: '//'; color: #1a4a7a; }
+    .cell p, .cell li { font-size: 13px; line-height: 1.65; color: #8aaabf; }
+    .cell ul { list-style: none; padding: 0; }
+    .cell ul li { padding: 3px 0 3px 16px; position: relative; color: #8aaabf; }
+    .cell ul li::before { content: '>'; position: absolute; left: 0; color: #0066ff; font-family: 'Share Tech Mono', monospace; }
+
+    /* ============================================================
+       ETHICAL FRAMEWORK CARDS
+       To add a new framework:
+         1. Copy one .fw-item block
+         2. Give it a unique class e.g. "fw-item newfw"
+         3. Add a CSS rule: .fw-item.newfw { border-color: #xxxx; background: #xxxx; }
+         4. Add: .fw-item.newfw .fw-name { color: #xxxx; }
+    ============================================================ */
+    .fw-stack { display: flex; flex-direction: column; gap: 8px; }
+    .fw-item { border: 1px solid; border-radius: 4px; padding: 10px 12px; }
+    .fw-item.duty   { border-color: #0066ff44; background: #00336620; }
+    .fw-item.virtue { border-color: #00884444; background: #00442220; }
+    .fw-item.util   { border-color: #aa660044; background: #55330020; }
+    .fw-name { font-size: 12px; font-weight: 700; letter-spacing: 1px; margin-bottom: 3px; }
+    .fw-item.duty   .fw-name { color: #4499ff; }
+    .fw-item.virtue .fw-name { color: #44cc88; }
+    .fw-item.util   .fw-name { color: #ffaa44; }
+    .fw-desc { font-size: 11.5px; line-height: 1.5; color: #6a8aaa; }
+
+    /* ============================================================
+       PIPELINE STEPS
+       To add a new pipeline step: copy one .pipe-step block,
+       place it between the existing steps, and add an arrow div
+       between them (see existing arrows for reference).
+    ============================================================ */
+    .pipe-step {
+      border: 1px solid #1a3a5a;
+      background: #060c18;
+      padding: 12px;
+      border-radius: 4px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .ps-icon  { font-family: 'Share Tech Mono', monospace; font-size: 18px; color: #0066ff; }
+    .ps-label { font-size: 11px; font-weight: 600; color: #c8d8f0; letter-spacing: 0.5px; }
+    .ps-sub   { font-size: 10px; color: #4a6a8f; margin-top: 2px; }
+    .pipe-arrow { text-align: center; font-family: 'Share Tech Mono', monospace; color: #0066ff; font-size: 11px; }
+
+    /* ============================================================
+       CASE CARDS
+       To add a new case:
+         1. Copy one .case block
+         2. Change class to c4 (or any new number)
+         3. Add CSS: .case.c4::before { background: #yourcolor; }
+                     .case.c4 .badge  { border-color: #x; color: #x; background: #x; }
+         4. Fill in .ct (title), .cd (description), .badge (outcome)
+    ============================================================ */
+    .case-stack { display: flex; flex-direction: column; gap: 8px; }
+    .case {
+      border: 1px solid #1a3a5a; border-radius: 4px;
+      padding: 11px 13px; background: #060c18;
+      position: relative; overflow: hidden;
+    }
+    .case::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; }
+    .case.c1::before { background: #0066ff; }
+    .case.c2::before { background: #00cc66; }
+    .case.c3::before { background: #ff6644; }
+    .ct    { font-size: 12px; font-weight: 700; color: #c8dcf0; margin-bottom: 3px; letter-spacing: 0.5px; }
+    .cd    { font-size: 11.5px; line-height: 1.5; color: #6a8aaa; }
+    .badge { font-family: 'Share Tech Mono', monospace; font-size: 10px; margin-top: 6px; padding: 2px 7px; border-radius: 3px; display: inline-block; }
+    .case.c1 .badge { background: #0033660a; border: 1px solid #0066ff44; color: #4499ff; }
+    .case.c2 .badge { background: #00330a0a; border: 1px solid #00cc6644; color: #44cc88; }
+    .case.c3 .badge { background: #33110a0a; border: 1px solid #ff664444; color: #ff8866; }
+
+    /* ============================================================
+       FINDINGS GRID
+       To add a new finding: copy one .fg block, assign it a new
+       class (f5, f6...), add a color rule for .fg.f5 .fl { color: #x; }
+    ============================================================ */
+    .findings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .fg { border: 1px solid #1a3a5a; border-radius: 4px; padding: 11px 13px; background: #060c18; }
+    .fl { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 1px; margin-bottom: 5px; }
+    .fg.f1 .fl { color: #4499ff; }
+    .fg.f2 .fl { color: #44cc88; }
+    .fg.f3 .fl { color: #ffaa44; }
+    .fg.f4 .fl { color: #ff6688; }
+    .ft { font-size: 12px; line-height: 1.55; color: #7a9abf; }
+
+    /* ============================================================
+       FUTURE DIRECTIONS
+       To add a new direction: copy one .fut block and update
+       .fut-num, .fut-title, .fut-desc. The grid auto-wraps.
+       To change columns: edit grid-template-columns on .future-grid.
+    ============================================================ */
+    .future-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .fut {
+      border: 1px solid #1a3a5a; border-radius: 4px;
+      padding: 12px; background: #060c18;
+      position: relative; overflow: hidden;
+    }
+    .fut::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, #0066ff, transparent);
+    }
+    .fut-num   { font-family: 'Share Tech Mono', monospace; font-size: 22px; color: #1a3a6a; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+    .fut-title { font-size: 12px; font-weight: 700; color: #c8d8f0; margin-bottom: 4px; letter-spacing: 0.3px; }
+    .fut-desc  { font-size: 11.5px; line-height: 1.5; color: #5a7a9f; }
+
+    /* ============================================================
+       FOOTER
+       To add more bibliography entries: add · entry inside the
+       left <span>. To change course info: edit the right <span>.
+    ============================================================ */
+    .p-footer {
+      background: #060b14;
+      border-top: 1px solid #1a3a6a;
+      padding: 10px 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 8px;
+    }
+    .p-footer span { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: #2a5a7a; letter-spacing: 0.5px; }
+  </style>
+</head>
+<body>
+
+<div class="p scanline">
+
+  <!-- ============================================================
+       HEADER — edit title, tagline, authors, course here
+  ============================================================ -->
+  <div class="p-header">
+    <div class="logo-hex">
+      <div class="logo-sym">⚖</div>
+      <div class="logo-lbl">ETHAI</div>
+    </div>
+    <div class="hdr-main">
+      <h1>EthicaAI</h1>
+      <div class="tag">// pioneering in the ethical ai of tomorrow</div>
+    </div>
+    <div class="hdr-meta">
+      <div class="authors">H. Kim · S. Kazemi · M.V. Nguyen</div>
+      <div class="course">UMBC · CMSC 304 · SPRING 2026</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       STATUS BAR — add/remove status-item divs to change entries
+  ============================================================ -->
+  <div class="status-bar">
+    <div class="status-item"><span class="status-dot"></span>STATUS: <span>ACTIVE</span></div>
+    <div class="status-item">DOMAIN: <span>Generative AI + IP Ethics</span></div>
+    <div class="status-item">FRAMEWORKS: <span>Duty · Virtue · Utilitarianism</span></div>
+    <div class="status-item">CASES: <span>3 landmark</span></div>
+  </div>
+
+  <!-- ============================================================
+       BODY GRID — 3 columns, 1px gap (color #1a2a4a acts as divider)
+  ============================================================ -->
+  <div class="p-body">
+
+    <!-- CELL 1: Motivation (1 column) -->
+    <div class="cell">
+      <h2>MOTIVATION</h2>
+      <p style="margin-bottom:10px;color:#7a9abf;">Generative AI models are trained on massive datasets that include copyrighted works — without creator consent, knowledge, or compensation.</p>
+      <ul>
+        <li>Creators not notified or compensated</li>
+        <li>Ownership of AI output legally ambiguous</li>
+        <li>Copyright law lags behind AI capabilities</li>
+        <li>Core fairness and attribution at stake</li>
+        <!-- To add a bullet: copy the <li> above and edit text -->
+      </ul>
+    </div>
+
+    <!-- CELL 2: Ethical Frameworks (1 column) -->
+    <div class="cell">
+      <h2>ETHICAL FRAMEWORKS</h2>
+      <div class="fw-stack">
+        <div class="fw-item duty">
+          <div class="fw-name">DUTY ETHICS</div>
+          <div class="fw-desc">Using copyrighted work without consent is categorically wrong regardless of benefit produced.</div>
+        </div>
+        <div class="fw-item virtue">
+          <div class="fw-name">VIRTUE ETHICS</div>
+          <div class="fw-desc">A virtuous actor treats creators with fairness and respect — not as anonymous data sources.</div>
+        </div>
+        <div class="fw-item util">
+          <div class="fw-name">UTILITARIANISM</div>
+          <div class="fw-desc">AI benefits millions, but harm to individual creators must be weighed against those gains.</div>
+        </div>
+        <!-- To add a framework: copy one fw-item block above and follow CSS instructions -->
+      </div>
+    </div>
+
+    <!-- CELL 3: AI Training Pipeline (1 column) -->
+    <div class="cell">
+      <h2>AI TRAINING PIPELINE</h2>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div class="pipe-step">
+          <div class="ps-icon">⬇</div>
+          <div>
+            <div class="ps-label">Data scraping</div>
+            <div class="ps-sub">Copyrighted images, code, text harvested</div>
+          </div>
+        </div>
+        <div class="pipe-arrow">↓</div>
+        <div class="pipe-step">
+          <div class="ps-icon">⚙</div>
+          <div>
+            <div class="ps-label">Model training</div>
+            <div class="ps-sub">No consent required under current law</div>
+          </div>
+        </div>
+        <div class="pipe-arrow">↓</div>
+        <div class="pipe-step">
+          <div class="ps-icon">◈</div>
+          <div>
+            <div class="ps-label">Generated output</div>
+            <div class="ps-sub">Ownership legally unresolved</div>
+          </div>
+        </div>
+        <!-- To add a step: copy pipe-step + pipe-arrow pair above -->
+      </div>
+    </div>
+
+    <!-- CELL 4: Real-World Cases (2 columns) -->
+    <div class="cell span2">
+      <h2>REAL-WORLD CASES</h2>
+      <div class="case-stack">
+        <div class="case c1">
+          <div class="ct">Getty Images v. Stability AI (2025)</div>
+          <div class="cd">Stable Diffusion trained on ~12.3M Getty images without consent. UK High Court found limited trademark infringement but dismissed primary copyright claims on territorial grounds.</div>
+          <span class="badge">OUTCOME: Copyright claims dismissed · Trademark: limited liability</span>
+        </div>
+        <div class="case c2">
+          <div class="ct">Doe v. GitHub — Copilot (2022–ongoing)</div>
+          <div class="cd">Copilot trained on billions of lines of open-source code, reproducing it without license attribution. Court dismissed DMCA claims but allowed breach-of-license claims to proceed.</div>
+          <span class="badge">OUTCOME: DMCA dismissed · Breach-of-license ongoing</span>
+        </div>
+        <div class="case c3">
+          <div class="ct">Thaler v. Perlmutter (2023)</div>
+          <div class="cd">Dr. Thaler sought copyright for AI-generated art, listing his "Creativity Machine" as sole author. Both district court and D.C. Circuit denied — human authorship is a legal requirement.</div>
+          <span class="badge">OUTCOME: Denied — AI cannot hold copyright</span>
+        </div>
+        <!-- To add a case: copy one .case block, assign c4, add CSS for c4 -->
+      </div>
+    </div>
+
+    <!-- CELL 5: Findings (1 column) -->
+    <div class="cell">
+      <h2>FINDINGS</h2>
+      <div class="findings-grid">
+        <div class="fg f1">
+          <div class="fl">DUTY</div>
+          <div class="ft">Unconsented training data use violates categorical duty to respect creator rights.</div>
+        </div>
+        <div class="fg f2">
+          <div class="fl">VIRTUE</div>
+          <div class="ft">Industry behavior lacks fairness and respect for human creative labor.</div>
+        </div>
+        <div class="fg f3">
+          <div class="fl">UTILITY</div>
+          <div class="ft">Broad benefit only ethical if harm-reduction for creators is built in.</div>
+        </div>
+        <div class="fg f4">
+          <div class="fl">LEGAL GAP</div>
+          <div class="ft">Copyright law cannot address AI authorship or training data consent.</div>
+        </div>
+        <!-- To add a finding: copy one .fg block, assign f5, add CSS color for f5 .fl -->
+      </div>
+    </div>
+
+    <!-- CELL 6: Future Directions (full width) -->
+    <div class="cell span3">
+      <h2>FUTURE DIRECTIONS</h2>
+      <div class="future-grid">
+        <div class="fut">
+          <div class="fut-num">01</div>
+          <div class="fut-title">Consent-based datasets</div>
+          <div class="fut-desc">Require explicit creator opt-in before work is ingested into AI training pipelines.</div>
+        </div>
+        <div class="fut">
+          <div class="fut-num">02</div>
+          <div class="fut-title">Creator compensation</div>
+          <div class="fut-desc">Establish royalty or licensing systems for creative works that contribute to model performance.</div>
+        </div>
+        <div class="fut">
+          <div class="fut-num">03</div>
+          <div class="fut-title">Training transparency</div>
+          <div class="fut-desc">Mandate public disclosure of training dataset sources for accountability and auditability.</div>
+        </div>
+        <div class="fut">
+          <div class="fut-num">04</div>
+          <div class="fut-title">Copyright law reform</div>
+          <div class="fut-desc">Update legal frameworks to define AI authorship and protect human creators in the generative AI era.</div>
+        </div>
+        <!-- To add a direction: copy one .fut block, update number, title, desc -->
+      </div>
+    </div>
+
+  </div><!-- end .p-body -->
+
+  <!-- ============================================================
+       FOOTER — edit bibliography and course info here
+  ============================================================ -->
+  <div class="p-footer">
+    <span>// U.S. Copyright Office (2025) · Thaler v. Perlmutter (2023) · Getty Images v. Stability AI (2025) · GPT-4 Technical Report</span>
+    <span>CMSC 304 · PROF. VESEY · SPRING 2026</span>
+  </div>
+
+</div><!-- end .p -->
+
+</body>
+</html>
